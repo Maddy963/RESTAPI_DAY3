@@ -14,4 +14,8 @@
     <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
     <fullyQualifiedTypeName name="jakarta.persistence.GeneratedValue"/>
     <fullyQualifiedTypeName name="jakarta.persistence.ManyToMany"/>
+    <fullyQualifiedTypeName name="com.example.demo.model.FruitModel"/>
+    <fullyQualifiedTypeName name="com.example.demo.model.VegetableModel"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+    <fullyQualifiedTypeName name="com.example.demo.Model.Student"/>
 </qualifiedTypeNameHistroy>
