@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.Controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,43 +12,48 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.Book;
-import com.example.demo.service.Services;
+import com.example.demo.Model.Book;
+import com.example.demo.Service.BookService;
+
+
 
 @RestController
 public class ApiController {
-
 	@Autowired
-	Services sser;
+	BookService bser;
 	
 	@PostMapping("add")
-	public Book add(@RequestBody Book ss) {
-		return sser.saveinfo(ss);
+	public Book add(@RequestBody Book b)
+	{
+		return bser.saveBook(b);
+	}
+	@PostMapping("/")
+	public boolean addDet(@RequestBody List<Book> b)
+	{
+		return bser.savedetails(b)!=null;
+	}
+	@GetMapping("/")
+	public List<Book> show()
+	{
+		return bser.showBook();
+	}
+	@GetMapping("{id}")
+	public Optional<Book> showid(@PathVariable int id) {
+		return bser.getid(id);
 	}
 	
-	@PostMapping("addDetails")
-	public List<Book> adddetails(@RequestBody List<Book> ss) {
-		return sser.savedetails(ss);
+	@PutMapping("/")
+	public Book modify(@RequestBody Book b) {
+		return bser.changeinfo(b);
 	}
-	
-	@GetMapping("showDetails")
-	public List<Book> show() {
-		return sser.showinfo();
+	@DeleteMapping("/{id}")
+	public void delid(@PathVariable int id) {
+		bser.deleteid(id);
+	}
+	@PutMapping("/{id}")
+	public String modbyid(@PathVariable int id,@RequestBody Book b) {
+		return bser.updatebyid(id, b);
 	}
 
-	@GetMapping("showid/{id}")
-	public Optional<Book> showDetailsById(@PathVariable int id) {
-		return sser.showbyid(id);
-	}
-	
-	@PutMapping("updatebyid/{id}")
-	public String modifybyid(@PathVariable int id, @RequestBody Book ss) {
-		return sser.changebyid(id, ss);
-	}
-	
-	@DeleteMapping("delid/{id}")
-	public String deletemyid(@PathVariable int id) {
-		sser.deleteid(id);
-		return "Delete successfully";
-	}
+
 }
